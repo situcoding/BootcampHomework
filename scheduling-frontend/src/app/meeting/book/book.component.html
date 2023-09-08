@@ -1,0 +1,28 @@
+<!-- meeting/book/book.component.html -->
+
+<form [formGroup]="meetingForm" (ngSubmit)="bookMeeting()">
+
+  <!-- Existing Fields -->
+  <input type="date" formControlName="date" required>
+  <input type="time" formControlName="time" required>
+  <input type="text" formControlName="time_zone" required>
+  <input type="text" formControlName="location" required>
+  
+  <select formControlName="meeting_type">
+    <option value="I">Internal</option>
+    <option value="E">External</option>
+  </select>
+
+  <!-- New Fields -->
+  <input type="text" formControlName="subject" placeholder="Subject">
+  
+  <input type="text" formControlName="attendees" placeholder="Attendees (comma separated)">
+  
+  <input type="text" formControlName="host" placeholder="Host">
+  
+  <input type="text" formControlName="co_host" placeholder="Co-Host">
+  
+  <textarea formControlName="notes" placeholder="Notes"></textarea>
+
+  <button type="submit">Book Meeting</button>
+</form>

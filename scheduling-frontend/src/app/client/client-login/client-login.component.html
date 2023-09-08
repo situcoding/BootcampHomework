@@ -1,0 +1,30 @@
+<!-- admin-login.component.html -->
+
+<h1 style="text-align:center">  
+  Client Login
+</h1>  
+
+
+<div class="login">  
+  <h2 class="login-header">Log in</h2>  
+  <form [formGroup]="authForm" class="login-container" (ngSubmit)="signIn()">
+    <p>
+      <input formControlName="client_username" type="text">
+      <br>
+      <input type="password" placeholder="Password" formControlName="password">
+    </p>
+    <div *ngIf="isSubmitted && formControls['client_username'].errors" class="help-block">  <!-- Note the name change -->
+      <div *ngIf="formControls['client_username'].errors['required']">Client Username is required</div>  
+    </div>
+    <div *ngIf="isSubmitted && formControls['password'].errors" class="help-block">  
+      <div *ngIf="formControls['password'].errors['required']">Password is required</div>  
+    </div>
+
+    <div *ngIf="loginSuccessful">Login was successful</div>
+    <div *ngIf="loginFailed">Login failed</div>
+ 
+    <p>  
+      <input type="submit" value="Log in">  
+    </p>  
+  </form>  
+</div>

@@ -1,0 +1,54 @@
+.hero-section {
+  background-color: #000000; /* Black background color */
+  color: #ffffff; /* Text color */
+
+  .hero-content {
+    padding: 100px 0;
+    text-align: center;
+
+    h1 {
+      font-size: 60px; /* Larger font size */
+      font-weight: bold; /* Bold font weight */
+      margin-bottom: 20px;
+      font-family: "Arial", sans-serif; /* Use Arial font or fallback to sans-serif */
+      color: #ff9900; /* Fun theme color for headings */
+    }
+
+    p {
+      font-size: 24px; /* Larger font size */
+      margin-bottom: 30px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Use Arial font or fallback to sans-serif */
+      font-style: italic;
+      
+    }
+
+    .btn-primary {
+      background-color: #ff9900; /* Fun theme color */
+      color: #ffffff;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-family: "Arial", sans-serif; /* Use Arial font or fallback to sans-serif */
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #ffcc00; /* Lighter shade on hover */
+      }
+    }
+  }
+}
+
+.dark-mode {
+  /* Dark mode styles */
+  background-color: #1a1a1a;
+  color: #ffffff;
+
+  .hero-content {
+    h1 {
+      color: #ffcc00; /* Fun theme color for headings in dark mode */
+    }
+
+    /* Other dark mode styles for text elements */
+  }
+}

@@ -1,0 +1,44 @@
+body.dark-mode {
+    background-color: #333;
+    color: white;
+  }
+  #calendar {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+
+  .calendar-header {
+    background-color: #555;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .day-name, .day {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #666;
+  }
+  
+  .day.available {
+    background-color: #49e9df; /* green */
+  }
+  
+  .day.booked {
+    background-color: #e32119; /* red */
+  }
+  
+  .day.pending {
+    background-color: #ff9a00; /* orange */
+  }
+  
+  .client-dashboard {
+    background-color: blue;
+  }
+

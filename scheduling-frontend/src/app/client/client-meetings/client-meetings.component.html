@@ -1,0 +1,68 @@
+<!-- client-meetings.component.html -->
+<div *ngIf="meeting">
+    <h1>Meeting Details</h1>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <td>{{ meeting.id }}</td>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <td>{{ meeting.date | date }}</td>
+      </tr>
+      <tr>
+        <th>Start Time</th>
+        <td>{{ meeting.start_time }}</td>
+      </tr>
+      <tr>
+        <th>End Time</th>
+        <td>{{ meeting.end_time }}</td>
+      </tr>
+      <tr>
+        <th>Time Zone</th>
+        <td>{{ meeting.time_zone }}</td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td>{{ meeting.location }}</td>
+      </tr>
+      <tr>
+        <th>Attendees</th>
+        <td>{{ meeting.attendees?.join(', ') }}</td>
+      </tr>
+      <tr>
+        <th>Host</th>
+        <td>{{ meeting.host }}</td>
+      </tr>
+      <tr>
+        <th>Co-Host</th>
+        <td>{{ meeting.co_host }}</td>
+      </tr>
+      <tr>
+        <th>Subject</th>
+        <td>{{ meeting.subject }}</td>
+      </tr>
+      <tr>
+        <th>Meeting Type</th>
+        <td>{{ meeting.meeting_type }}</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>{{ meeting.notes }}</td>
+      </tr>
+      <tr>
+        <th>Created At</th>
+        <td>{{ meeting.createdAt | date }}</td>
+      </tr>
+      <tr>
+        <th>Updated At</th>
+        <td>{{ meeting.updatedAt | date }}</td>
+      </tr>
+    </table>
+  </div>
+  
+  <!-- Display message if the meeting object is not available -->
+  <div *ngIf="!meeting">
+    <p>No meeting details are available.</p>
+  </div>
+  

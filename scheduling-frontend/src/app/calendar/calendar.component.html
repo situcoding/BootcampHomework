@@ -1,0 +1,35 @@
+  
+<!-- calendar.component.html -->
+<!DOCTYPE html>
+
+<body class="dark-mode">
+
+<div class="calendar-container">
+
+<div id="calendar">
+  <!-- Calendar header (if you want to keep it) -->
+  <div class="calendar-header">
+    <span>August 2023</span> <!-- Note: FullCalendar itself will have a header too -->
+  </div>
+
+  <full-calendar [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
+  <br>
+  <div class="info-text">
+    <p>Please log in to book or manage your meetings. If you are new to the site, please <a routerLink="/register">register here</a>.</p>
+  </div>
+  
+  <div class="link-container">
+<nav>
+  <br>
+  <a routerLink="/client/client-login" 
+  routerLinkActive="active-link" 
+  class="client-login-link">Friends Login</a>
+<br>
+<a routerLink="/admin/admin-login" 
+  routerLinkActive="active-link" 
+  class="admin-login-link">Admins Login</a>
+<br>
+<a routerLink="/" class="home-link">Back Home</a>
+
+</nav>
+<div>

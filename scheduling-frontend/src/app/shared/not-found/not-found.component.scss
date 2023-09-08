@@ -1,0 +1,87 @@
+/* Styles for the not-found component */
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #161304;
+    animation: slideIn 2s ease-in-out;
+  }
+  
+  .hero-section {
+    background-color: #161304;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .hero-content {
+    text-align: center;
+    animation: slideIn 1.5s ease-in-out;
+    margin: 10px 0; /* Add margin to the content section */
+  }
+  
+  .triple-size {
+    font-size: 3.5em;
+    margin: 0;
+    animation: bounce 5s infinite;
+  }
+  
+  .link-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #030303;
+    color: rgb(216, 167, 117);
+    font-size: 1em;
+    font-family: "Chalkduster", cursive;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  a:hover {
+    background-color: #85807c;
+    transform: scale(1.05);
+  }
+  
+  img {
+    max-width: 40%;
+    margin-top: 20px;
+    display: block;
+  }
+  
+  /* Style for "404: Page Not Found" */
+  h1 {
+    font-size: 1.5em;
+    font-family: 'Chalkduster', cursive;
+    color: #a19797;
+    text-align: center;
+  }
+  
+  /* Style for "Ops, the developer may be slacking." */
+  p {
+    font-size: 3em;
+    font-family: 'Chalkduster', cursive;
+    color: #a19797;
+    text-align: center;
+  }
+  
+
+  
+  /* ... other styles ... */
+  

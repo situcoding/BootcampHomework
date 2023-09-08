@@ -1,0 +1,115 @@
+<div class ="background">
+<body [ngClass]="{'dark-mode': isDarkModeActive}">
+<div class="registration-container">
+    <h2>Welcome to the Client Registration</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" formControlName="first_name" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="middle_name">Middle Name:</label>
+        <input type="text" id="middle_name" formControlName="middle_name">
+      </div>
+  
+      <div class="form-group">
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" formControlName="last_name" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" formControlName="birthday" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" formControlName="gender" required>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+          <option value="O">Other</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="street">Street:</label>
+        <input type="text" id="street" formControlName="street" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="unitApptnumber">UnitApptNumber:</label>
+        <input type="text" id="unitApptnumber" formControlName="unitapptnumber">
+      </div>
+  
+
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" id="city" formControlName="city" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="state">State:</label>
+        <input type="text" id="state" formControlName="state" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="postal_code">Postal Code:</label>
+        <input type="text" id="postal_code" formControlName="postal_code" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <input type="text" id="country" formControlName="country" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="mobile">Mobile:</label>
+        <input type="tel" id="mobile" formControlName="mobile" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="company_school">Company/School:</label>
+        <input type="text" id="company_school" formControlName="company_school">
+      </div>
+      <!-- Client User Id -->
+      <div class="form-group">
+        <label for="client_username">Create Your Own User Id:</label>
+        <input type="text" id="client_username" class="form-control" formControlName="client_username">
+      </div>
+
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" required>
+      </div>
+  
+      <button type="submit" [disabled]="!registerForm.valid">Register</button>
+    </form>
+  
+    
+  </div>
+<!-- If registration is successful -->
+<div *ngIf="registrationSuccess">
+  <h1>Registration Successful!</h1>
+  <p>You can now proceed to login.</p>
+  <br> <a routerLink="/client/client-login" class="animated-link">Client Login</a>
+
+</div>
+
+<!-- If registration is not yet successful -->
+<div *ngIf="!registrationSuccess">
+  <p>Let's try again.</p>
+ 
+</div>
+</body>

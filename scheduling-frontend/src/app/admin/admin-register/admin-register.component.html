@@ -1,0 +1,113 @@
+  <!-- admin/admin-register/admin-register.component.ts  -->
+
+<div class ="background">
+
+
+
+
+<h5>Admin User Registration</h5>
+<form *ngIf="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <!-- First Name -->
+  <div class="form-group">
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" class="form-control" formControlName="first_name" required minlength="3">
+  </div>
+
+  <!-- Middle Name -->
+  <div class="form-group">
+    <label for="middle_name">Middle Name:</label>
+    <input type="text" id="middle_name" class="form-control" formControlName="middle_name">
+  </div>
+
+  <!-- Last Name -->
+  <div class="form-group">
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" class="form-control" formControlName="last_name" required minlength="3">
+  </div>
+
+  <!-- Birthday -->
+  <div class="form-group">
+    <label for="birthday">Birthday:</label>
+    <input type="date" id="birthday" class="form-control" formControlName="birthday" required>
+  </div>
+
+  <!-- Gender -->
+  <div class="form-group">
+    <label for="gender">Gender:</label>
+    <select id="gender" class="form-control" formControlName="gender" required>
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+      <option value="O">Other</option>
+    </select>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" class="form-control" formControlName="email" required>
+  </div>
+
+  <!-- Mobile -->
+  <div class="form-group">
+    <label for="mobile">Mobile:</label>
+    <input type="tel" id="mobile" class="form-control" formControlName="mobile">
+  </div>
+
+<!-- Admin Role -->
+  <div class="form-group">
+    <label for="role">Role</label>
+    <select id="role" formControlName="role">
+      <option value="admin_master">Admin Master</option>
+      <option value="admin_user">Admin User</option>
+    </select>
+  </div>
+
+  <!-- Admin User Id -->
+  <div class="form-group">
+    <label for="admin_username">Create Your Own Admin ID:</label>
+    <input type="text" id="admin_username" class="form-control" formControlName="admin_username">
+   <!---- <div *ngIf="registerForm.get('admin_username')?.invalid && registerForm.get('admin_username')?.touched" class="text-danger">
+      Invalid Client ID. It must be alphanumeric and up to 20 characters. -->
+    </div>
+
+
+  <!-- Password -->
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" id="password" class="form-control" formControlName="password" required minlength="8">
+  </div>
+
+  <!-- Confirm Password -->
+  <div class="form-group">
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" required>
+    <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="text-danger">
+      Confirming password is required.
+    </div>
+    <div *ngIf="registerForm.get('password')?.value !== registerForm.get('confirmPassword')?.value && registerForm.get('confirmPassword')?.touched" class="text-danger">
+      Passwords must match.
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+  </div>
+</form>
+<!-- If registration is successful -->
+<div *ngIf="registrationSuccess">
+  <h1>Registration Successful!</h1>
+  <p>You can now proceed to login.</p>
+  <br> <a routerLink="/admin/admin-login" class="animated-link">Admin Login</a>
+
+</div>
+
+<!-- If registration is not yet successful -->
+<div *ngIf="!registrationFail">
+  <p>Let's try again.</p>
+ 
+</div>
+
+
+</div>
+

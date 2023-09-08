@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>client-dashboard</title>
+  </head>
+  <body>
+    <nav>
+        <ul>
+          <li *ngFor="let link of links">
+            <a [routerLink]="link.path">{{ link.name }}</a>
+          </li>
+          <li *ngIf="isUserAdmin">
+            <a routerLink="/admin">Admin Panel</a>
+          </li>
+          <li *ngIf="isUserClient">
+            <a routerLink="/client">Client Dashboard</a>
+          </li>
+        </ul>
+        <button (click)="logout()">Logout</button>
+      </nav>
+      
+      
+    <h1>Welcome to Your Client Dashboard</h1>
+    <p>Here, you can manage your profile, meetings, and more.</p>
+
+    <div *ngIf="upcomingMeetings?.length; else noMeetings">
+      <h2>Upcoming Meetings:</h2>
+      <ul>
+        <li *ngFor="let meeting of upcomingMeetings">
+          {{ meeting.subject }} on {{ meeting.combinedDateTime | date:'fullDate' }} at {{ meeting.combinedDateTime | date:'shortTime' }}
+
+        </li>
+      </ul>
+    </div>
+
+    <!-- Display message if there are no upcoming meetings -->
+    <ng-template #noMeetings>
+      <p>There are no upcoming meetings.</p>
+    </ng-template>
+  </body>
+</html>
