@@ -105,6 +105,10 @@ export async function registerClient(req, res) {
 
 
 
+// Your existing imports...
+
+// ... Existing code ...
+
 export async function loginAdmin(req, res) {
   try {
     const { admin_username, password } = req.body;
@@ -114,9 +118,9 @@ export async function loginAdmin(req, res) {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
 
-    const role = admin.role;  /* Fetch role from the database object */
+    const role = admin.role;  // Fetch role from the database object
 
-    await Login_logs.create({  
+    await LoginLog.create({  // Note: You had a typo, it should be 'LoginLog'
       admin_username: admin_username,
       role: role,
       ip_address: req.ip,
@@ -125,7 +129,7 @@ export async function loginAdmin(req, res) {
       status: 'success'
     });
 
-    const token = jwt.sign({ admin_username: admin_username, role: role }, SECRET_KEY);
+    const token = jwt.sign({ admin_username: admin_username, role: role, first_name: admin.first_name }, SECRET_KEY);
 
     res.status(200).json({ message: 'Admin login successful', token });
   } catch (error) {
@@ -142,9 +146,9 @@ export async function loginClient(req, res) {
       return res.status(401).json({ message: 'Invalid user ID or password' });
     }
 
-    const role = 'client';  /* Role is hardcoded for clients */
+    const role = 'client';  // Role is hardcoded for clients
 
-    await Login_logs.create({  
+    await LoginLog.create({  // Note: You had a typo, it should be 'LoginLog'
       client_username: client_username,
       role: role,
       ip_address: req.ip,
@@ -153,13 +157,18 @@ export async function loginClient(req, res) {
       status: 'success'
     });
 
-    const token = jwt.sign({ client_username: client_username, role: role }, SECRET_KEY);
+    const token = jwt.sign({ client_username: client_username, role: role, first_name: client.first_name }, SECRET_KEY);
 
     res.status(200).json({ message: 'Client login successful', token });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 }
+
+// ... Your existing code ...
+
+
+
 
 export async function loginAdminMaster(req, res) {
   try {
@@ -170,9 +179,9 @@ export async function loginAdminMaster(req, res) {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
 
-    const role = adminMaster.role;  /* Fetch role from the database object */
+    const role = adminMaster.role;  // Fetch role from the database object
 
-    await Login_logs.create({
+    await LoginLog.create({  // Note: It should be 'LoginLog', based on your import
       admin_username: adminMaster.id,
       role: role,
       ip_address: req.ip,
@@ -182,16 +191,13 @@ export async function loginAdminMaster(req, res) {
     });
 
     const token = jwt.sign(
-      { id: adminMaster.id, role: role },
+      { id: adminMaster.id, role: role, first_name: adminMaster.first_name },
       SECRET_KEY
     );
 
-    res
-      .status(200)
-      .json({ message: 'Admin Master login successful', token });
+    res.status(200).json({ message: 'Admin Master login successful', token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
   }
 }
-

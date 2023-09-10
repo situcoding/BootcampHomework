@@ -1,3 +1,6 @@
+/* app.module.ts */
+
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,18 +11,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { BookComponent } from './meeting/book/book.component';
-import { ViewComponent } from './meeting/view/view.component';
-import { EditComponent } from './meeting/edit/edit.component';
+import { BookMeetingComponent } from './meeting/book-meeting/book-meeting.component';
+import { ViewMeetingComponent } from './meeting/view-meeting/view-meeting.component';
+import { EditMeetingComponent } from './meeting/edit-meeting/edit-meeting.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    BookComponent,
-    ViewComponent,
-    EditComponent
+    BookMeetingComponent,
+    ViewMeetingComponent,
+    EditMeetingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,30 @@
+<!--- meeting/view-meeting/view-meeting.compnonent.html--->
+
+
+<!-- view-meeting.component.html -->
+<div *ngIf="meeting">
+    <strong>Date:</strong> {{ meeting.date | date }}<br>
+    <strong>Start Time:</strong> {{ meeting.start_time }}<br>
+    <strong>End Time:</strong> {{ meeting.end_time }}<br>
+    <strong>Time Zone:</strong> {{ meeting.time_zone }}<br>
+    <strong>Location:</strong> {{ meeting.location }}<br>
+    <strong>Attendees:</strong> {{ meeting.attendees?.join(', ') }}<br>
+    <strong>Host:</strong> {{ meeting.host }}<br>
+    <strong>Co-Host:</strong> {{ meeting.co_host }}<br>
+    <strong>Subject:</strong> {{ meeting.subject }}<br>
+    <strong>Meeting Type:</strong> {{ meeting.meeting_type }}<br>
+
+  
+    <!-- Navigation Links -->
+    <div class="navigation-links">
+     
+      <a [routerLink]="['/meeting/edit/edit-meeting']">Edit Meeting</a>
+      <br>
+      <a [routerLink]="['/meeting/book/book-meeting']">Book New Meeting</a>
+      <br>
+      <a [routerLink]="['/client-dashboard']">Go to Client Dashboard</a>
+      
+    </div>
+  
+  </div>
+  

@@ -2,8 +2,8 @@
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Meeting } from './meeting.model';
 
 @Injectable({
@@ -25,12 +25,24 @@ export class MeetingService {
   }
 
   getMeeting(id: string): Observable<Meeting> {
-    return this.http.get<Meeting>(`${this.apiUrl}/view/${id}`);
+    return this.http.get<Meeting>(`${this.apiUrl}/view/${id}`).pipe(
+      map((meeting: Meeting) => {
+        if (!meeting.date || !meeting.start_time || !meeting.end_time || !meeting.time_zone || !meeting.location || !meeting.meeting_type || !meeting.createdAt) {
+          throw new Error("Invalid meeting object received from API");
+        }
+        return meeting;
+      }),
+      catchError((error) => {
+        console.error("Error fetching meeting:", error);
+        return throwError(error);
+      })
+    );
   }
 
-  fetchMeetings(): Observable<Meeting[]> {
-    return this.http.get<Meeting[]>(`${this.apiUrl}/list`).pipe(
-      map(meetings => meetings.map(meeting => {
+
+      fetchMeetings(): Observable<Meeting[]> {
+        return this.http.get<Meeting[]>(`${this.apiUrl}/list`).pipe(
+        map(meetings => meetings.map(meeting => {
         const combinedDateTime = new Date(`${meeting.date}T${meeting.start_time}Z`);
         return {
           ...meeting,
@@ -44,12 +56,23 @@ export class MeetingService {
     let headers = new HttpHeaders({
       'Authorization': `Bearer ${this.jwtToken}`
     });
-  
-    let apiEndpoint = role === 'admin' ? `/api/meetings/upcoming/all` : `/api/meetings/upcoming/${username}`;
-    
-    return this.http.get<Meeting[]>(apiEndpoint, {headers: headers});
-  }
-  
-  
-  }
 
+    // Choose API endpoint based on the role
+    let apiEndpoint: string;
+    if (role === 'admin' || role === 'admin_master') {
+      apiEndpoint = `${this.apiUrl}/upcoming/all`;
+    } else if (role === 'client') {
+      apiEndpoint = `${this.apiUrl}/upcoming?client_username=${username}`;
+    } else {
+      console.error('Invalid role:', role);
+      return of([]);
+    }
+  
+    return this.http.get<Meeting[]>(apiEndpoint, { headers: headers }).pipe(
+      catchError(error => {
+        console.error('Error getting upcoming meetings:', error);
+        return of([]);
+      })
+    );
+  }
+}

@@ -19,7 +19,7 @@
     meeting_type: MeetingType;
     notes?: string;
     createdAt: string | Date;
-    updatedAt: string | Date;
+    updatedAt?: string | Date;
   }
   
   export interface UpcomingMeeting extends Meeting {

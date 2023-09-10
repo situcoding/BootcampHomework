@@ -22,7 +22,7 @@ export class ClientMeetingsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
-        // Fetch a single meeting
+        console.log("Obtained ID from route: ", id);
         this.meetingService.getMeeting(id).subscribe(
           (meeting: any) => this.meeting = meeting,
           (error: any) => console.error(error)

@@ -6,11 +6,11 @@ import { MeetingService } from '../meeting.service';
 import { Meeting, MeetingType } from '../meeting.model';
 
 @Component({
-  selector: 'book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  selector: 'book-meeting',
+  templateUrl: './book-meeting.component.html',
+  styleUrls: ['./book-meeting.component.scss']
 })
-export class BookComponent implements OnInit {
+export class BookMeetingComponent implements OnInit {
   meetingForm!: FormGroup;
 
   constructor(

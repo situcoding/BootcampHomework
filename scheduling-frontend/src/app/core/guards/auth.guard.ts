@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
   private decode(token: string | null): { role?: string, client_username?: string } | null {
     if (token) {
       try {
-        const decoded = jwt_decode<{ role?: string, client_username?: string }>(token);
+        const decoded = jwt_decode<{ role: string, client_username: string, first_name: string }>(token);
         return decoded;
       } catch (err) {
         console.error("Error decoding token: ", err);

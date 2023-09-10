@@ -5,8 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { BookComponent } from './meeting/book/book.component';
-import { MeetingAuthGuard } from './core/guards/meeting.guard';
+import { BookMeetingComponent } from './meeting/book-meeting/book-meeting.component';
+import { EditMeetingComponent } from './meeting/edit-meeting/edit-meeting.component';
+import { ViewMeetingComponent } from './meeting/view-meeting/view-meeting.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { ClientLoginComponent } from './client/client-login/client-login.component';
@@ -27,8 +28,27 @@ const routes: Routes = [
   },
   { path: 'admin-login', component: AdminLoginComponent },
   { path: 'client-login', component: ClientLoginComponent },
-  { path: 'book', component: BookComponent, canActivate: [AuthGuard],
+  { path: 'book', component: BookMeetingComponent, canActivate: [AuthGuard],
     data: {expectedRole: 'client'}},
+    {
+      path: 'meeting/book/book-meeting',
+      component: BookMeetingComponent,
+      canActivate: [AuthGuard],
+      data: { requiredPermission: 'create' }
+    },
+    {
+      path: 'meeting/view/meeting-view',
+      component: ViewMeetingComponent,
+      canActivate: [AuthGuard],
+      data: { requiredPermission: 'read' }
+    },
+    {
+      path: 'meeting/edit/edit-meeting',
+      component: EditMeetingComponent,
+      canActivate: [AuthGuard],
+      data: { requiredPermission: 'update' }
+    },
+    
   { path: '**', component: NotFoundComponent }
 ];
 

@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { ClientService } from '../client.service';
+import { MeetingService } from 'src/app/meeting/meeting.service';
 import { Meeting, UpcomingMeeting } from '../../meeting/meeting.model';
 import { Observable } from 'rxjs';
 

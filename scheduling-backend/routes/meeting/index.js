@@ -47,8 +47,14 @@ router.get('/upcoming', async (req, res) => {
 
   try {
     const clientUsername = req.query.client_username;
+
+    // Validate client_username
+    if (!clientUsername) {
+      return res.status(400).json({ success: false, error: "client_username is required" });
+    }
+
     const meetings = await Meeting.findAll({
-      attributes: ['id', 'date', 'time', 'time_zone', 'location', 'subject'],  // <---- Add this line
+      attributes: ['id', 'date', 'start_time', 'end_time', 'time_zone', 'location', 'subject'],
       where: {
         client_username: clientUsername,
         date: {
@@ -57,15 +63,15 @@ router.get('/upcoming', async (req, res) => {
       },
       order: [
         ['date', 'ASC'],
-        ['time', 'ASC']
+        ['start_time', 'ASC']
       ]
     });
     res.status(200).json({ success: true, data: meetings });
   } catch (error) {
+    console.error("Error getting upcoming meetings:", error);
     res.status(400).json({ success: false, error });
   }
 });
-
 
 
 /* Add more routes as needed */

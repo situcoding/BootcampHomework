@@ -21,6 +21,9 @@
         <li *ngIf="isUserClient">
           <a routerLink="/client">Client Dashboard</a>
         </li>
+        <li *ngIf="isUserClient">
+          <a routerLink="/book-meeting">Book a Meeting</a>
+        </li>
       </ul>
       <button (click)="logout()">Logout</button>
     </nav>
@@ -33,7 +36,7 @@
       <h2>Upcoming Meetings:</h2>
       <ul>
         <li *ngFor="let meeting of upcomingMeetings">
-          <a [routerLink]="['/client-meeting', meeting.id]">{{ meeting.subject }} on {{ meeting.date | date }} at {{ meeting.date | date:'shortTime' }}</a>
+          <a [routerLink]="['/view-meeting', meeting.id]">{{ meeting.subject }} on {{ meeting.date | date }} at {{ meeting.date | date:'shortTime' }}</a>
         </li>
       </ul>
     </div>

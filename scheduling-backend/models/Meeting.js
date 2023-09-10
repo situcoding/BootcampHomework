@@ -16,7 +16,11 @@ Meeting.init(
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
-    time: {
+    start_time: {
+      type: DataTypes.TIME,
+      allowNull: false,
+    },
+    end_time: {
       type: DataTypes.TIME,
       allowNull: false,
     },
