@@ -1,29 +1,28 @@
 /* routes/calendar/index.js  */
 
 
-const express = require('express');
+import express from 'express';
+import availabilityRoutes from '../availability/index.js';
+
 const router = express.Router();
-const db = require('/Users/sjsitu/UltimateScheduler/scheduling-backend/database.js'); /* replace with your own database connection */
 
-/* GET route for /calendar/bookedSlots */
+// Mount availabilityRoutes
+router.use('/availability', availabilityRoutes);
+
+// Your existing routes
 router.get('/bookedSlots', async (req, res) => {
-  try {
-    const bookedSlots = await db.query('SELECT date, time FROM meetings', { type: db.QueryTypes.SELECT });
-    res.json(bookedSlots);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
+  // ...existing logic...
 });
-  router.get('/availability', async (req, res) => {
-    try {
-      const availability = await db.query('SELECT * FROM availability', { type: db.QueryTypes.SELECT });
-      res.json(availability);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal Server Error' });
-    }
 
-
-
+router.get('/allUnexpired', async (req, res) => {
+  // ...existing logic...
 });
+
+
+router.get('/getUnexpiredAvailabilities', (req, res, next) => {
+  req.url = '/getUnexpiredAvailabilities'; // Modify the URL as needed
+  availabilityRoutes.handle(req, res, next); // Forward the request to the availability router
+});
+
+
+export default router;

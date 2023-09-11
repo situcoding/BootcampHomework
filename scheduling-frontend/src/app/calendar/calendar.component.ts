@@ -56,8 +56,8 @@ export class CalendarComponent implements OnInit, OnChanges {
     this.calendarEvents = this.availability.map(availability => ({
       title: 'Available',
       start: availability.date,
-      backgroundColor: '#28a745',
-      borderColor: '#28a745'
+      backgroundColor: '#1234',
+      borderColor: '#12b12f'
     }));
     console.log("Calendar Events:", this.calendarEvents);
   }

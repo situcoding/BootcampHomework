@@ -1,35 +1,20 @@
 /* routes/availability/index.js */
 
-
 import express from 'express';
 import availabilityController from '../../controllers/availability.js';
-import db from '/Users/sjsitu/UltimateScheduler/scheduling-backend/database.js';
-
+import { checkRole } from '../../authentication/auth.Roles.js';
+import { authenticateToken } from '../../authentication/authMiddleware.js';
 
 const router = express.Router();
 
-/* Create a new availability */
-router.post('/', availabilityController.createAvailability);
+// Removed the db import since it's not being used in this file.
 
-/* Get all availabilities */
-router.get('/getAvailability', async (req, res) => {
-    try {
-      const availability = await db.query('SELECT * FROM availability', { type: db.QueryTypes.SELECT });
-      res.json(availability);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal Server Error' });
-    }
-  });
+// Define your routes here
+router.post('/', authenticateToken, checkRole(['admin_master', 'admin_user']), availabilityController.createAvailability);
+router.put('/:id', authenticateToken, checkRole(['admin_master', 'admin_user']), availabilityController.updateAvailability);
+router.delete('/:id', authenticateToken, checkRole(['admin_master', 'admin_user']), availabilityController.deleteAvailability);
 
-
-/* Get a single availability by ID */
-router.get('/:id', availabilityController.getAvailabilityById);
-
-/* Update an availability by ID */
-router.put('/:id', availabilityController.updateAvailability);
-
-/* Delete an availability by ID */
-router.delete('/:id', availabilityController.deleteAvailability);
+// Notice the URL change here
+router.get('/getUnexpiredAvailabilities', availabilityController.getUnexpiredAvailabilities);
 
 export default router;

@@ -1,6 +1,7 @@
 /* controllers/availability.js */
 
 import Availability from '../models/Availability.js';
+import {Op} from 'sequelize';
 
 /* Create a new availability  */
 async function createAvailability(req, res) {
@@ -13,7 +14,7 @@ async function createAvailability(req, res) {
 }
 
 /* Get all availabilities */
-async function getAllAvailabilities(req, res) {
+async function getAllAvailabilities(_req, res) {
     try {
         const availabilities = await Availability.findAll();
         res.status(200).send(availabilities);
@@ -38,19 +39,21 @@ async function getAvailabilityById(req, res) {
 // Update an availability by ID
 async function updateAvailability(req, res) {
     try {
-        const availability = await Availability.update(req.body, {
+        const [numberOfAffectedRows, affectedRows] = await Availability.update(req.body, {
             where: { id: req.params.id },
+            returning: true // needed for affectedRows to be populated
         });
 
-        if (!availability) {
+        if (numberOfAffectedRows === 0) {
             return res.status(404).send({ message: 'Availability not found' });
         }
 
-        res.status(200).send(availability);
+        res.status(200).send(affectedRows[0]);
     } catch (error) {
-        res.status(400).send(error);
+        res.status(400).send({ message: 'Invalid request', error });
     }
 }
+
 
 /* Delete an availability by ID */
 async function deleteAvailability(req, res) {
@@ -68,13 +71,39 @@ async function deleteAvailability(req, res) {
         res.status(500).send(error);
     }
 }
+/* Get all unexpired availabilities */
+
+async function getUnexpiredAvailabilities(_req, res) {
+    try {
+        const currentDateTime = new Date();
+        const availabilities = await Availability.findAll({
+            where: {
+                expiration_date_time: {
+                    [Op.gt]: currentDateTime
+                }
+            }
+        });
+        res.status(200).send(availabilities);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error);
+    }
+}
+
+
 
 const availabilityController = {
     createAvailability,
     getAllAvailabilities,
     getAvailabilityById,
     updateAvailability,
-    deleteAvailability
+    deleteAvailability,
+    getUnexpiredAvailabilities
 };
+
+
+
+
+
 
 export default availabilityController;

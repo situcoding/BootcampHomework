@@ -9,12 +9,12 @@ import { Availability } from './availability.model';
   providedIn: 'root'
 })
 export class CalendarService {
-  private apiUrl = 'http://localhost:4000/availability';
+  private apiUrl = 'http://localhost:4000/calendar';
 
   constructor(private http: HttpClient) {}
 
   getUnexpiredAvailabilities(): Observable<Availability[]> {
-    return this.http.get<Availability[]>(`${this.apiUrl}/getUnexpiredAvailability`);
+    return this.http.get<Availability[]>(`${this.apiUrl}/getUnexpiredAvailabilities`);
   }
   
 

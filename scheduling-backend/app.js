@@ -1,7 +1,6 @@
 /* app.js */
 
 
-
 import express from 'express';
 import cors from 'cors';
 import db from './database.js';
@@ -14,12 +13,13 @@ import meetingRoutes from './routes/meeting/index.js';
 import usersRoutes from './routes/users.js';
 import mainRoutes from './routes/index.js';
 import authRoutes from './authentication/authRoutes.js';
+import calendarRoutes from './routes/calendar/index.js';  // Make sure to import your calendar routes
 
-const app = express();
 
 const allowedOrigins = ['http://localhost:4200'];
+const app = express();
 
-// CORS
+// Enable CORS for all routes
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -33,8 +33,6 @@ app.use(
   })
 );
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 /* Setup routes */
 app.use('/auth', authRoutes);
@@ -44,7 +42,9 @@ app.use('/client', clientRoutes);
 app.use('/meeting', meetingRoutes);
 app.use('/users', usersRoutes);
 app.use('/', mainRoutes);
-app.use('/meeting', meetingRoutes)
+app.use('/meeting', meetingRoutes);
+app.use('/calendar', calendarRoutes);  // Fixed the typo here
+
 
 /* Start the database connection and create tables */
 db.authenticate()
