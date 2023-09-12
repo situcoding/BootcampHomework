@@ -43,7 +43,7 @@ export async function getBookedSlots(req, res) {
           [Sequelize.Op.gte]: currentDate
         }
       },
-      attributes: ['date', 'start_time']
+      attributes: ['date', 'start_time', 'end_time']
     });
 
     res.status(200).json(bookedSlots);

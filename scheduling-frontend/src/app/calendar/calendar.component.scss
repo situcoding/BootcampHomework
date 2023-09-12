@@ -1,26 +1,56 @@
 /* calendar/calendar.component.scss */
-
 .calendar-container {
-    position: relative; /* Ensures the child is positioned relative to this */
+  position: relative; /* Ensures the child is positioned relative to this */
+  width: 100%; // Optionally set the calendar width
+  height: 800px; // Optionally set the calendar height
+}
+
+.link-container {
+  position: auto;
+  bottom: 0px;
+  right: 400px;
+}
+
+nav a {
+  color: #eee3e3; /* or any color you want */
+}
+
+.info-text {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 1.2em;
+}
+
+.info-text a {
+  color: #ac8be0; // Or any color that suits your design
+}
+
+// If your calendar is a table
+td.calendar-cell {
+  height: 100px; // Adjust as needed
+  width: 100px; // Adjust as needed
+}
+
+// For increasing text size
+.calendar-text {
+  font-size: 15px; // Adjust as needed
+}
+
+// Media queries for responsiveness
+@media (min-width: 768px) {
+  .calendar-container {
+    height: 800px; // Adjust as needed
   }
-  
-  .link-container {
-    position: absolute;
-    bottom: px;
-    right: 400px;
+  .calendar-text {
+    font-size: 18px; // Adjust as needed
   }
-  
-nav a  {
-    color: #eee3e3; /* or any color you want */
- 
+}
+
+.day  {
+  div {
+    font-size: 0.75em;
   }
-  .info-text {
-    text-align: center;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    font-size: 1.2em;
-  }
-  
-  .info-text a {
-    color: #ac8be0; // Or any color that suits your design
-  }
+
+
+}

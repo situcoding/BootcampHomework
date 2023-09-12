@@ -4,7 +4,12 @@
 import express from 'express';
 import Meeting from '../../models/Meeting.js';
 import { Op } from 'sequelize';
+import { getAllMeetings, getBookedSlots } from '../../controllers/meeting.js';  /* Import your new function */
+// ... (other imports)
+
+
 const router = express.Router();
+
 
 /* Book a meeting */
 router.post('/book', async (req, res) => {
@@ -73,7 +78,9 @@ router.get('/upcoming', async (req, res) => {
   }
 });
 
+router.get('/all', getAllMeetings);
 
+router.get('/getBookedSlots', getBookedSlots); 
 /* Add more routes as needed */
 
 export default router;

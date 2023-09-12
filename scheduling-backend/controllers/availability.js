@@ -81,7 +81,8 @@ async function getUnexpiredAvailabilities(_req, res) {
                 expiration_date_time: {
                     [Op.gt]: currentDateTime
                 }
-            }
+            },
+            attributes: ['date', 'start_time', 'end_time']
         });
         res.status(200).send(availabilities);
     } catch (error) {
