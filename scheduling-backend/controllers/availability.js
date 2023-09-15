@@ -1,6 +1,7 @@
 /* controllers/availability.js */
 
 import Availability from '../models/Availability.js';
+import Meeting from '../models/Meeting.js';
 import {Op} from 'sequelize';
 
 /* Create a new availability  */
@@ -73,9 +74,11 @@ async function deleteAvailability(req, res) {
 }
 /* Get all unexpired availabilities */
 
-async function getUnexpiredAvailabilities(_req, res) {
+async function getTrueAvailabilities(_req, res) {
     try {
         const currentDateTime = new Date();
+        const trueAvailabilities = [];
+
         const availabilities = await Availability.findAll({
             where: {
                 expiration_date_time: {
@@ -84,10 +87,54 @@ async function getUnexpiredAvailabilities(_req, res) {
             },
             attributes: ['date', 'start_time', 'end_time']
         });
-        res.status(200).send(availabilities);
+
+        const meetings = await Meeting.findAll({
+            where: {
+                date: {
+                    [Op.gte]: currentDateTime
+                }
+            },
+            attributes: ['date', 'start_time', 'end_time']
+        });
+
+        availabilities.forEach(avail => {
+            let conflictingMeetings = meetings.filter(meet => {
+                return new Date(avail.date).getTime() === new Date(meet.date).getTime() &&
+                    avail.start_time < meet.end_time &&
+                    avail.end_time > meet.start_time;
+            });
+
+            if (conflictingMeetings.length === 0) {
+                trueAvailabilities.push(avail);
+            } else {
+                let currentStart = avail.start_time;
+                conflictingMeetings.sort((a, b) => a.start_time - b.start_time);  // Sort meetings by start time
+                
+                conflictingMeetings.forEach(meet => {
+                    if (currentStart < meet.start_time) {
+                        trueAvailabilities.push({
+                            date: avail.date,
+                            start_time: currentStart,
+                            end_time: meet.start_time
+                        });
+                    }
+                    currentStart = Math.max(currentStart, meet.end_time);
+                });
+
+                if (currentStart < avail.end_time) {
+                    trueAvailabilities.push({
+                        date: avail.date,
+                        start_time: currentStart,
+                        end_time: avail.end_time
+                    });
+                }
+            }
+        });
+
+        res.status(200).send(trueAvailabilities);
     } catch (error) {
         console.error(error);
-        res.status(500).send(error);
+        res.status(500).send({ message: "An error occurred while fetching availabilities." });
     }
 }
 
@@ -99,7 +146,8 @@ const availabilityController = {
     getAvailabilityById,
     updateAvailability,
     deleteAvailability,
-    getUnexpiredAvailabilities
+    getTrueAvailabilities
+    
 };
 
 

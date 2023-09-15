@@ -15,6 +15,6 @@ router.put('/:id', authenticateToken, checkRole(['admin_master', 'admin_user']),
 router.delete('/:id', authenticateToken, checkRole(['admin_master', 'admin_user']), availabilityController.deleteAvailability);
 
 // Notice the URL change here
-router.get('/getUnexpiredAvailabilities', availabilityController.getUnexpiredAvailabilities);
+router.get('/getTrueAvailabilities', availabilityController.getTrueAvailabilities);
 
 export default router;

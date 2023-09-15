@@ -23,8 +23,8 @@ router.get('/allUnexpired', async (req, res) => {
   // ...existing logic...
 });
 
-router.get('/getUnexpiredAvailabilities', (req, res, next) => {
-  req.url = '/getUnexpiredAvailabilities';
+router.get('/getTrueAvailabilities', (req, res, next) => {
+  req.url = '/getTrueAvailabilities';
   availabilityRoutes.handle(req, res, next); 
 });
 

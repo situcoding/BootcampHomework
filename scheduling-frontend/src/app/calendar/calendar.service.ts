@@ -22,8 +22,8 @@ export class CalendarService {
 
   constructor(private http: HttpClient) {}
 
-  getUnexpiredAvailabilities(dateRange: DateRange): Observable<Availability[]> {
-    return this.http.get<Availability[]>(`${this.apiUrl}/getUnexpiredAvailabilities`, {
+  getTrueAvailabilities(dateRange: DateRange): Observable<Availability[]> {
+    return this.http.get<Availability[]>(`${this.apiUrl}/getTrueAvailabilities`, {
       params: {
         start: dateRange.start,
         end: dateRange.end

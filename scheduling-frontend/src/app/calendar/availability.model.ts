@@ -9,7 +9,8 @@ export enum WeekDay {
   }
   
   export interface Availability {
-    endDate: any;
+    start_time: string | number | Date;
+    end_time: string | number | Date;
     id: number;
     date: Date; /* If this is a date without a time, it's okay to use Date here */
     day: WeekDay; /* Using the enum type */
