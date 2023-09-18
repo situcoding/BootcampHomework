@@ -15,6 +15,7 @@ export interface Client {
     country: any;
     email: string;
     mobile: string | null;
+    role: string;
     companySchool: string | null;
     client_username: string;
     password: string;

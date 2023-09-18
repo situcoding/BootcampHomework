@@ -37,7 +37,7 @@ export class CalendarService {
         start: dateRange.start,
         end: dateRange.end
       }
-    });
+    })
   }
   // Other methods
 }

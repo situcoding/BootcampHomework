@@ -54,3 +54,14 @@ td.calendar-cell {
 
 
 }
+
+.fc-event-available {
+  background-color: transparent !important;
+  margin: 4px solid green !important;       
+}
+
+.fc-event-booked {
+
+  background-color: transparent !important; 
+  margin: 4px solid red !important;         
+}

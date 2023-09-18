@@ -25,8 +25,9 @@ Client.init({
     mobile: DataTypes.STRING,
     company_school: DataTypes.STRING,
     client_username: DataTypes.STRING,
-    password: DataTypes.STRING,  /* Note: This should be hashed before being stored.*/
-    /* ... Add any other fields as needed...*/
+    password: DataTypes.STRING,
+    createdat: DataTypes.STRING,
+    updatedAT: DataTypes.STRING
 }, {
     sequelize,
     modelName: 'Client',

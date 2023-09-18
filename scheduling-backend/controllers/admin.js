@@ -1,47 +1,55 @@
 /* controllers/admin.js */
 
-
 import bcrypt from 'bcrypt';
-import Jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import AdminUser from '../models/AdminUser.js';
 import LoginLog from '../models/LoginLog.js';
+import dotenv from 'dotenv';
 
-const SECRET_KEY = '2d2d9154cfa511986f9c21c596789329db50411269a695d66a65ca64940c64be';
+dotenv.config();
+const SECRET_KEY = process.env.SECRET_KEY;
 
-/*Function to register an admin user */
+
+
 export async function registerAdmin(req, res) {
-try {
-const { admin_username,
-password,
-role,
-first_name,
-middle_name,
-last_name,
-birthday,
-gender,
-mobile,
-email } = req.body;
+  try {
+    const { 
+      first_name,
+      middle_name,
+      last_name,
+      birthday,
+      gender,
+      mobile,
+      role,
+      email,
+      admin_username,
+      password
+    } = req.body;
 
-const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
- await AdminUser.create({
-  admin_username,
-  password: hashedPassword,
-  role,
-  first_name,
-  middle_name,
-  last_name,
-  birthday,
-  gender,
-  mobile,
-  email,
-});
+    const newAdminUser = await AdminUser.create({
+      first_name,
+      middle_name,
+      last_name,
+      birthday,
+      gender,
+      mobile,
+      role,
+      email,
+      admin_username,
+      password: hashedPassword, // Pass the hashed password here
+    });
 
-res.status(201).json({ message: 'Admin registered successfully' });
-} catch (error) {
-res.status(500).json({ error: error.message });
+    res.status(201).json({ message: 'Admin registered successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
-}
+
+
+
+
 /* Function to get all admin users (accessible only by Admin_Master) */
 export async function getAllAdminUsers(req, res) {
 try {
@@ -66,29 +74,37 @@ const adminUsername = req.admin_username;
 
 /* Login function */
 export async function loginAdmin(req, res) {
-    try {
-      /* Assuming you've verified req.body.admin_username and req.body.role are secure and validated */
-      const { admin_username, role } = req.body;
-      const loggedInAdmin = {
-        admin_username: admin_username,
-        role: role,
-      };
-  
-      await LoginLog.create({
-        admin_username: loggedInAdmin.admin_username,
-        loginTimestamp: new Date(),
-        role: loggedInAdmin.role,
-      });
-  
-      console.log('Generating JWT token');  /* Debugging line */
-      const token = jwt.sign({ admin_username: admin_username, role: role }, SECRET_KEY);
-  
-      console.log('Login successful');  /* Debugging line */
-      res.status(200).json({ message: "Logged in successfully", token });
-    } catch (error) {
-      console.error('Error logging in:', error);
-      res.status(500).json({ message: 'Error logging in', error: error.message });
+  console.log("Request Body: ", req.body);
+  try {
+    const { admin_username, password } = req.body;
+    const admin = await AdminUser.findOne({ where: { admin_username } });
+
+    if (!admin || !bcrypt.compareSync(password, admin.password)) {
+      return res.status(401).json({ message: 'Invalid username or password' });
     }
+
+    // Retrieve the admin's role from the database
+    const role = admin.role;
+
+    await LoginLog.create({
+      admin_username: admin_username,
+      role: role, // Set the role based on the database value
+      ip_address: req.ip,
+      user_agent: req.get('User-Agent'),
+      loginTimestamp: new Date(),
+      status: 'success'
+    });
+
+    const token = jwt.sign(
+      { admin_username: admin_username, role: role },
+      SECRET_KEY
+    );
+
+    res.status(200).json({ message: 'Admin login successful', token });
+  } catch (error) {
+    console.error('Error logging in:', error);
+    res.status(500).json({ message: 'Error logging in', error: error.message });
   }
-  
+}
+
   

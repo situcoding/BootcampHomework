@@ -13,12 +13,19 @@ import meetingRoutes from './routes/meeting/index.js';
 import usersRoutes from './routes/users.js';
 import mainRoutes from './routes/index.js';
 import authRoutes from './authentication/authRoutes.js';
-import calendarRoutes from './routes/calendar/index.js';  // Make sure to import your calendar routes
+import calendarRoutes from './routes/calendar/index.js'; 
+import dotenv from 'dotenv';
 
+dotenv.config();
 
-const allowedOrigins = ['http://localhost:4200'];
+const SECRET_KEY = process.env.SECRET_KEY;
+const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:4200'];
 const app = express();
 
+
+
+
+app.use(express.json ());
 // Enable CORS for all routes
 app.use(
   cors({
@@ -42,9 +49,7 @@ app.use('/client', clientRoutes);
 app.use('/meeting', meetingRoutes);
 app.use('/users', usersRoutes);
 app.use('/', mainRoutes);
-app.use('/meeting', meetingRoutes);
-app.use('/calendar', calendarRoutes);  // Fixed the typo here
-
+app.use('/calendar', calendarRoutes);  
 
 /* Start the database connection and create tables */
 db.authenticate()

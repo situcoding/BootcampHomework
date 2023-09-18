@@ -4,27 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
-function confirmPasswordValidator(control: AbstractControl): { [key: string]: boolean } | null {
-  const password = control.get('password');
-  const confirmPassword = control.get('confirmPassword');
-
-  if (!confirmPassword) {
-    return null; /* If confirmPassword control doesn't exist, skip validation */
-  }
-  
-  if (!confirmPassword.value) {
-    return { 'confirmPasswordRequired': true };
-  }
-  
-  if (password && confirmPassword && password.value !== confirmPassword.value) {
-    return { 'passwordMismatch': true };
-  }
-  
-  return null;
-}
-
-
-
 function adminUserIdValidator(control: AbstractControl): { [key: string]: boolean } | null {
   const adminUserId = control.get('admin_username');
 
@@ -55,7 +34,7 @@ registrationFail: any;
       last_name: ['', Validators.required],
       birthday: ['', Validators.required],
       gender: ['', Validators.required ],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       mobile: ['', Validators.required],
       role: ['admin_user', [Validators.required]],
       admin_username: ['', [Validators.required, adminUserIdValidator]],
@@ -82,7 +61,9 @@ registrationFail: any;
           error => {
             console.error('API Error:', error);
           }
-        );
-    }
+          );
+        } else {
+          console.log('Form is not valid');
   }
+}
 }

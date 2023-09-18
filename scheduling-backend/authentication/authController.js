@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import AdminUser from '../models/AdminUser.js';
 import Client from '../models/Client.js';
 import LoginLog from '../models/LoginLog.js';  
-import db from '../database.js';
 
 const SECRET_KEY = '2d2d9154cfa511986f9c21c596789329db50411269a695d66a65ca64940c64be'; 
 

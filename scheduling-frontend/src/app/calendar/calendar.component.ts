@@ -95,7 +95,8 @@ export class CalendarComponent implements OnInit, OnChanges {
         start: new Date(startDateISO),
         end: new Date(endDateISO),
         backgroundColor: 'gray',
-        borderColor: '#12b12f'
+        borderColor: '#12b12f',
+        classNames: ['fc-event-available']  
       };
     });
     
@@ -109,7 +110,8 @@ export class CalendarComponent implements OnInit, OnChanges {
       start: new Date(slot.date + 'T' + slot.start_time),  // Explicitly creating a new Date object
       end: new Date(slot.date + 'T' + slot.end_time),
       backgroundColor: 'gray',
-      borderColor: '#ff0000'
+      borderColor: '#ff0000',
+      classNames: ['fc-event-booked']
     }));
     
     this.calendarEvents = [...this.calendarEvents, ...bookedCalendarEvents];
