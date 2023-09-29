@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ClientDashboardComponent } from './client-dashboard/client-dashboard.component';
 import { ClientProfileComponent } from './client-profile/client-profile.component';
-import { ClientMeetingsComponent } from './client-meetings/client-meetings.component';
-import { BookMeetingComponent } from '../meeting/book-meeting/book-meeting.component';
 import { ClientLoginComponent } from './client-login/client-login.component';
 import { ClientRegisterComponent } from './client-register/client-register.component';
 import { ViewMeetingComponent } from '../meeting/view-meeting/view-meeting.component';
@@ -18,8 +16,6 @@ const clientRoutes: Routes = [
     { path: 'client-login', component: ClientLoginComponent },
     { path: 'client-register', component: ClientRegisterComponent },
     { path: 'client-profile', component: ClientProfileComponent },
-    { path: 'client-meetings', component: ClientMeetingsComponent },
-    { path: 'client-meetings/:id', component: ClientMeetingsComponent},
     { path: 'view-meeting/:id', component: ViewMeetingComponent}
   /* add more client routes here*/
 ];

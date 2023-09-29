@@ -9,7 +9,8 @@ import { ClientDashboardComponent } from './client-dashboard/client-dashboard.co
 import { ClientLoginComponent } from './client-login/client-login.component';
 import { ClientService } from './client.service';
 import { ClientProfileComponent } from './client-profile/client-profile.component';
-import { ClientMeetingsComponent } from './client-meetings/client-meetings.component';
+import { ClientProfileUpdateComponent } from './client-profile-update/client-profile-update.component';
+import { ClientPasswordUpdateComponent } from './client-password-update/client-password-update.component';
 
 
 
@@ -21,7 +22,8 @@ import { ClientMeetingsComponent } from './client-meetings/client-meetings.compo
     ClientDashboardComponent,
     ClientLoginComponent,
     ClientProfileComponent,
-    ClientMeetingsComponent
+    ClientProfileUpdateComponent,
+    ClientPasswordUpdateComponent
    
   ],
   imports: [

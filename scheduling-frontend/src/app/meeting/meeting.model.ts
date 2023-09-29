@@ -6,7 +6,7 @@
   }
   
   export interface Meeting {
-    id?: number;
+    id: number;
     date: string | Date;
     start_time: string;
     end_time: string;
@@ -23,8 +23,9 @@
   }
   
   export interface UpcomingMeeting extends Meeting {
+    status: string;
     remainingTime: string;
-    id?: number;
+    id: number;
     date: string | Date;
     start_time: string;
     end_time: string;

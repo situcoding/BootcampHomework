@@ -2,7 +2,7 @@
 
 
 export interface AdminUser{
-    id: number;
+    id: number | string;
     first_name: string;
     middle_name: string | null;
     last_name: string;
@@ -11,7 +11,7 @@ export interface AdminUser{
     email: string;
     mobile: string | null;
     role: string;
-    admin_user: string;
+    admin_username: string;
     password: string;
 
 }

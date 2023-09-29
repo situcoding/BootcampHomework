@@ -31,6 +31,17 @@ export class CalendarService {
     });
   }
 
+
+  editAvailabilities(dateRange: DateRange): Observable<Availability[]> {
+    return this.http.get<Availability[]>(`${this.apiUrl}/editAvailabilities`, {
+      params: {
+        start: dateRange.start,
+        end: dateRange.end
+      }
+    });
+  }
+
+
   getBookedSlots(dateRange: DateRange): Observable<BookedSlot[]> { // Update the type here
     return this.http.get<BookedSlot[]>(`${this.apiUrl}/getBookedSlots`, { // Update the type here
       params: {

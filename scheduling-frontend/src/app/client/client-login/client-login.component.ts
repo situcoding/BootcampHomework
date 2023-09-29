@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service'; // Assuming this is where your AuthService resides
+import { ClientAuthService } from 'src/app/core/services/client-auth.service'; // Assuming this is where your AuthService resides
 
 @Component({
   selector: 'client-login',
@@ -18,7 +18,7 @@ export class ClientLoginComponent implements OnInit {
   loginFailed: boolean = false;
   isSubmitted: boolean = false;
 
-  constructor(private httpClient: HttpClient, private router: Router, private authService: AuthService) {
+  constructor(private httpClient: HttpClient, private router: Router, private authService: ClientAuthService) {
     this.authForm = new FormGroup({
       client_username: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required])

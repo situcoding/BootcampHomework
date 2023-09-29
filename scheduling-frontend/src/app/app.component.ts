@@ -1,5 +1,9 @@
+/* src/app/app.component.ts */
+
+
 import { Component, HostListener, OnInit } from '@angular/core';
-import { AuthService } from './core/services/auth.service'; // corrected the import here
+import { AdminAuthService } from './core/services/admin-auth.service'; 
+import { ClientAuthService } from './core/services/client-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +14,25 @@ export class AppComponent implements OnInit {
   title(title: any) {
     throw new Error('Method not implemented.');
   }
-  darkMode = false;  
-  constructor(private authService: AuthService) {} // AuthService should now be correctly imported
+  darkMode = false;
+
+  // Inject both AdminAuthService and ClientAuthService
+  constructor(
+    private adminAuthService: AdminAuthService,
+    private clientAuthService: ClientAuthService
+  ) {}
 
   ngOnInit(): void {}
 
   @HostListener('window:mousemove') refreshUserState() {
-    this.authService.userActivityDetected();
+    // You can call userActivityDetected() on whichever service you need
+    this.adminAuthService.userActivityDetected();
+    this.clientAuthService.userActivityDetected();
   }
 
   @HostListener('window:keydown') refreshUserStateForKeyboard() {
-    this.authService.userActivityDetected();
+    // You can call userActivityDetected() on whichever service you need
+    this.adminAuthService.userActivityDetected();
+    this.clientAuthService.userActivityDetected();
   }
 }

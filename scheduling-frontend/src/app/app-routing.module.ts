@@ -28,22 +28,22 @@ const routes: Routes = [
   },
   { path: 'admin-login', component: AdminLoginComponent },
   { path: 'client-login', component: ClientLoginComponent },
-  { path: 'book', component: BookMeetingComponent, canActivate: [AuthGuard],
+  { path: 'book-meeting', component: BookMeetingComponent, canActivate: [AuthGuard],
     data: {expectedRole: 'client'}},
-    {
-      path: 'meeting/book/book-meeting',
+  {
+      path: 'meeting/book-meeting/book-meeting',
       component: BookMeetingComponent,
       canActivate: [AuthGuard],
       data: { requiredPermission: 'create' }
     },
-    {
-      path: 'meeting/view/meeting-view',
+   {
+      path: 'meeting/view-meeting/view-meeting',
       component: ViewMeetingComponent,
       canActivate: [AuthGuard],
       data: { requiredPermission: 'read' }
     },
     {
-      path: 'meeting/edit/edit-meeting',
+      path: 'meeting/edit-meeting/edit-meeting',
       component: EditMeetingComponent,
       canActivate: [AuthGuard],
       data: { requiredPermission: 'update' }

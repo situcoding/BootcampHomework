@@ -1,8 +1,9 @@
 /* shared/navbar/navbar.component.ts */
 
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../core/services/auth.service'; // Adjust the path as needed
+import { ClientAuthService } from '../../core/services/client-auth.service'; // Adjust the path as needed
 import { MeetingService } from 'src/app/meeting/meeting.service'; // Adjust the path as needed
+
 
 @Component({
   selector: 'app-navbar',
@@ -17,21 +18,26 @@ export class NavbarComponent implements OnInit {
   ];
 
   currentUser: { username?: string; role?: string; } | null | undefined;
-  
-  upcomingMeetings: any[] = []; /* Declare the variable */
 
-  constructor(private authService: AuthService, private meetingService: MeetingService) {}
-  
+  upcomingMeetings: any[] = []; // Declare the variable for upcoming meetings
+
+  constructor(private authService: ClientAuthService, private meetingService: MeetingService) {}
+
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
-    this.meetingService.fetchMeetings().subscribe(meetings => { // Use the injected service
-      this.upcomingMeetings = meetings;
-    }); // Missing closing parenthesis is added
+    
+    // Retrieve upcoming meetings using the meetingService
+    if (this.currentUser?.role === 'client') {
+      this.meetingService.getUpcomingMeetings(this.currentUser.username || '', this.currentUser.role || '').subscribe(meetings => {
+        this.upcomingMeetings = meetings;
+      });
+    }
   }
 
   logout() {
-    /* Logic to logout */
+    this.authService.logout();
   }
+
 
   get isUserAdmin(): boolean {
     return this.currentUser?.role === 'admin_user' || this.currentUser?.role === 'admin_master';

@@ -9,6 +9,8 @@ import { AdminMeetingListComponent } from './admin-meeting-list/admin-meeting-li
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminProfileUpdateComponent } from './admin-profile-update/admin-profile-update.component';
+import { AdminPasswordUpdateComponent } from './admin-password-update/admin-password-update.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     AdminClientListComponent,
     AdminMeetingListComponent,
     AdminDashboardComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    AdminProfileUpdateComponent,
+    AdminPasswordUpdateComponent
 
   ],
   imports: [

@@ -1,0 +1,100 @@
+<!--- client/client-profile-update/client-profile-update.component.ts -->
+
+<p>client-profile-update</p>
+
+
+<form [formGroup]="profileUpdateForm" (ngSubmit)="onSubmit()">
+
+  <!-- Displaying existing data as plain text -->
+  <div>
+    <strong>First Name:</strong> {{ client?.first_name }}
+  </div>
+  <div>
+    <strong>Middle Name:</strong> {{ client?.middle_name || 'N/A' }}
+  </div>
+  <div>
+    <strong>Last Name:</strong> {{ client?.last_name }}
+  </div>
+  <div>
+    <strong>Birthday:</strong> {{ client?.birthday }}
+  </div>
+  <div>
+    <strong>Gender:</strong> {{ client?.gender }}
+  </div>
+  <div>
+    <strong>Role:</strong> {{ client?.role }}
+  </div>
+
+  <!-- Editable fields -->
+  <div class="form-group">
+    <label for="street">Street</label>
+    <input type="text" class="form-control" id="street" formControlName="street">
+    <div *ngIf="profileUpdateForm.get('street').invalid && profileUpdateForm.get('street').touched" class="text-danger">
+        Street is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="unitApptnumber">Unit/Appt Number</label>
+    <input type="text" class="form-control" id="unitApptnumber" formControlName="unitApptnumber">
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" formControlName="city">
+    <div *ngIf="profileUpdateForm.get('city').invalid && profileUpdateForm.get('city').touched" class="text-danger">
+        City is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="state">State</label>
+    <input type="text" class="form-control" id="state" formControlName="state">
+    <div *ngIf="profileUpdateForm.get('state').invalid && profileUpdateForm.get('state').touched" class="text-danger">
+        State is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="postalCode">Zip Code</label>
+    <input type="text" class="form-control" id="postalCode" formControlName="postalCode">
+    <div *ngIf="profileUpdateForm.get('postalCode').invalid && profileUpdateForm.get('postalCode').touched" class="text-danger">
+        Zip Code is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="country">Country</label>
+    <input type="text" class="form-control" id="country" formControlName="country">
+    <div *ngIf="profileUpdateForm.get('country').invalid && profileUpdateForm.get('country').touched" class="text-danger">
+        Country is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" formControlName="email">
+    <div *ngIf="profileUpdateForm.get('email')?.invalid && profileUpdateForm.get('email')?.touched" class="text-danger">
+
+        Please enter a valid email.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="mobile">Mobile</label>
+    <input type="text" class="form-control" id="mobile" formControlName="mobile">
+    <div *ngIf="profileUpdateForm.get('mobile')?.invalid && profileUpdateForm.get('mobile')?.touched" class="text-danger"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="entity">Company or School</label>
+    <input type="text" class="form-control" id="entity" formControlName="companySchool">
+  </div>
+
+  <div class="form-group">
+    <label for="username">Client Username</label>
+    <input type="text" class="form-control" id="username" formControlName="client_username" readonly>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update Profile</button>
+</form>
