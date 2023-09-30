@@ -1,64 +1,64 @@
 <p>client-profile works!</p>
 
 
-<div class="client-profile">
+<div *ngIf="client" class="client-profile">
     <h2>Client Profile</h2>
     <div>
-      <strong>ID:</strong> {{ client.id }}
+      <strong>ID:</strong> {{ client?.id }}
     </div>
     <div>
-      <strong>First Name:</strong> {{ client.first_name }}
+      <strong>First Name:</strong> {{ client?.first_name }}
     </div>
     <div>
-      <strong>Middle Name:</strong> {{ client.middle_name || 'N/A' }}
+      <strong>Middle Name:</strong> {{ client?.middle_name || 'N/A' }}
     </div>
     <div>
-      <strong>Last Name:</strong> {{ client.last_name }}
+      <strong>Last Name:</strong> {{ client?.last_name }}
     </div>
     <div>
-      <strong>Birthday:</strong> {{ client.birthday | date: 'MM/dd/yyyy'  }}
+      <strong>Birthday:</strong> {{ client?.birthday | date: 'MM/dd/yyyy'  }}
     </div>
     <div>
-      <strong>Gender:</strong> {{ client.gender }}
+      <strong>Gender:</strong> {{ client?.gender }}
     </div>
     <div>
-      <strong>Street:</strong> {{ client.street }}
+      <strong>Street:</strong> {{ client?.street }}
     </div>
     <div>
-      <strong>Unit/Apartment Number:</strong> {{ client.unitApptnumber || 'N/A' }}
+      <strong>Unit/Apartment Number:</strong> {{ client?.unitApptnumber || 'N/A' }}
     </div>
     <div>
-      <strong>City:</strong> {{ client.city }}
+      <strong>City:</strong> {{ client?.city }}
     </div>
     <div>
-      <strong>State:</strong> {{ client.state }}
+      <strong>State:</strong> {{ client?.state }}
     </div>
     <div>
-      <strong>Postal Code:</strong> {{ client.postalCode }}
+      <strong>Postal Code:</strong> {{ client?.postalCode }}
     </div>
     <div>
-      <strong>Country:</strong> {{ client.country  }}
+      <strong>Country:</strong> {{ client?.country  }}
     </div>
     <div>
-      <strong>Email:</strong> {{ client.email }}
+      <strong>Email:</strong> {{ client?.email }}
     </div>
     <div>
-      <strong>Mobile:</strong> {{ client.mobile  }}
+      <strong>Mobile:</strong> {{ client?.mobile  }}
     </div>
     <div>
-      <strong>Role:</strong> {{ client.role }}
+      <strong>Role:</strong> {{ client?.role }}
     </div>
     <div>
-      <strong>Company/School:</strong> {{ client.companySchool || 'N/A' }}
+      <strong>Company/School:</strong> {{ client?.companySchool || 'N/A' }}
     </div>
     <div>
-      <strong>Client Username:</strong> {{ client.client_username }}
+      <strong>Client Username:</strong> {{ client?.client_username }}
     </div>
     <div>
-      <strong>Created At:</strong> {{ client.createdAt | date: 'MM/dd/yyyy HH:mm:ss'  }}
+      <strong>Created At:</strong> {{ client?.createdAt | date: 'MM/dd/yyyy HH:mm:ss'  }}
     </div>
     <div>
-      <strong>Updated At:</strong> {{ client.updatedAt | date: 'MM/dd/yyyy HH:mm:ss' }}
+      <strong>Updated At:</strong> {{ client?.updatedAt | date: 'MM/dd/yyyy HH:mm:ss' }}
     </div>
   </div>
   

@@ -29,7 +29,7 @@
   <div class="form-group">
     <label for="street">Street</label>
     <input type="text" class="form-control" id="street" formControlName="street">
-    <div *ngIf="profileUpdateForm.get('street').invalid && profileUpdateForm.get('street').touched" class="text-danger">
+    <div *ngIf="profileUpdateForm.get('street')?.invalid && profileUpdateForm.get('street')?.touched" class="text-danger">
         Street is required.
     </div>
   </div>
@@ -42,7 +42,7 @@
   <div class="form-group">
     <label for="city">City</label>
     <input type="text" class="form-control" id="city" formControlName="city">
-    <div *ngIf="profileUpdateForm.get('city').invalid && profileUpdateForm.get('city').touched" class="text-danger">
+    <div *ngIf="profileUpdateForm.get('city')?.invalid && profileUpdateForm.get('city')?.touched" class="text-danger">
         City is required.
     </div>
   </div>
@@ -50,7 +50,7 @@
   <div class="form-group">
     <label for="state">State</label>
     <input type="text" class="form-control" id="state" formControlName="state">
-    <div *ngIf="profileUpdateForm.get('state').invalid && profileUpdateForm.get('state').touched" class="text-danger">
+    <div *ngIf="profileUpdateForm.get('state')?.invalid && profileUpdateForm.get('state')?.touched" class="text-danger">
         State is required.
     </div>
   </div>
@@ -58,7 +58,7 @@
   <div class="form-group">
     <label for="postalCode">Zip Code</label>
     <input type="text" class="form-control" id="postalCode" formControlName="postalCode">
-    <div *ngIf="profileUpdateForm.get('postalCode').invalid && profileUpdateForm.get('postalCode').touched" class="text-danger">
+    <div *ngIf="profileUpdateForm.get('postalCode')?.invalid && profileUpdateForm.get('postalCode')?.touched" class="text-danger">
         Zip Code is required.
     </div>
   </div>
@@ -66,7 +66,7 @@
   <div class="form-group">
     <label for="country">Country</label>
     <input type="text" class="form-control" id="country" formControlName="country">
-    <div *ngIf="profileUpdateForm.get('country').invalid && profileUpdateForm.get('country').touched" class="text-danger">
+    <div *ngIf="profileUpdateForm.get('country')?.invalid && profileUpdateForm.get('country')?.touched" class="text-danger">
         Country is required.
     </div>
   </div>

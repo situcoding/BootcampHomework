@@ -19,7 +19,7 @@ export class ClientProfileComponent implements OnInit {
     private clientService: ClientService,
     private route: ActivatedRoute
   ) {}
-
+  
   ngOnInit(): void {
     // Get the 'client_username' parameter from the route
     this.route.paramMap.subscribe(params => {
@@ -27,9 +27,8 @@ export class ClientProfileComponent implements OnInit {
       if (clientUsername) {
         // Use the ClientService to fetch the client profile
         this.clientService.getClientProfile(clientUsername).subscribe(
-          (profile: any) => {
-            this.clientProfile = profile;
-            // You can now use this.clientProfile in your template to display the data
+          (profile: Client) => {   // Typecast the profile to Client
+            this.client = profile; // Assign fetched profile to the client property
           },
           error => {
             console.error('Error fetching client profile:', error);
@@ -40,5 +39,6 @@ export class ClientProfileComponent implements OnInit {
         // Handle the case where 'client_username' parameter is not provided
       }
     });
-  }
+}
+
 }
