@@ -97,7 +97,8 @@ export async function loginClient(req, res) {
             status: 'successful'
         });
 
-        const token = jwt.sign({ client_username, role: 'client' }, SECRET_KEY);
+        const token = jwt.sign({ client_username, role: 'client', first_name: client.first_name }, SECRET_KEY);
+
         res.status(200).json({ message: 'Logged in successfully', token });
     } catch (error) {
         console.error('Error logging in:', error);
