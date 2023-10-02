@@ -15,6 +15,9 @@ import { BookMeetingComponent } from './meeting/book-meeting/book-meeting.compon
 import { ViewMeetingComponent } from './meeting/view-meeting/view-meeting.component';
 import { EditMeetingComponent } from './meeting/edit-meeting/edit-meeting.component';
 import { SharedModule } from './shared/shared.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -33,7 +37,8 @@ import { SharedModule } from './shared/shared.module';
     FullCalendarModule,
     SharedModule,
     AppRoutingModule,
-    CalendarModule
+    CalendarModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

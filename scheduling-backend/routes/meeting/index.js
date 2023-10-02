@@ -12,7 +12,7 @@ const router = express.Router();
 
 
 /* Book a meeting */
-router.post('/book', async (req, res) => {
+router.post('/book-meeting', async (req, res) => {
   try {
     const meeting = await Meeting.create(req.body);
     res.status(201).json({ success: true, data: meeting });
@@ -22,7 +22,7 @@ router.post('/book', async (req, res) => {
 });
 
 /* Edit a meeting */
-router.put('/edit/:id', async (req, res) => {
+router.put('/edit-meeting/:id', async (req, res) => {
   try {
     const meeting = await Meeting.update(req.body, {
       where: {
@@ -36,7 +36,7 @@ router.put('/edit/:id', async (req, res) => {
 });
 
 /* Get a single meeting */
-router.get('/view/:id', async (req, res) => {
+router.get('/view-meeting/:id', async (req, res) => {
   try {
     const meeting = await Meeting.findByPk(req.params.id);
     res.status(200).json({ success: true, data: meeting });
@@ -47,7 +47,7 @@ router.get('/view/:id', async (req, res) => {
 
 
 /* Get upcoming meetings by client_username */
-router.get('/upcoming', async (req, res) => {
+router.get('/get-upcoming-meeting', async (req, res) => {
   console.log('Upcoming meeting route triggered');
 
   try {
@@ -78,7 +78,7 @@ router.get('/upcoming', async (req, res) => {
   }
 });
 
-router.get('/all', getAllMeetings);
+router.get('/get-all-meeting', getAllMeetings);
 
 router.get('/getBookedSlots', getBookedSlots); 
 /* Add more routes as needed */

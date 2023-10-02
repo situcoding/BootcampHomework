@@ -1,0 +1,62 @@
+/* book-meeting.component.scss  */
+
+body {
+    background-image:url('/src/assets/Book-meeting background.jpg'); /* Fixed the path syntax */
+    background-size: auto; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: 'Arial', sans-serif;
+    
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centering children horizontally */
+    align-items: center; /* Centering children vertically */
+}
+
+form {
+    background: rgba(85, 81, 81, 0.77);
+    padding: 20px;
+    border-radius: 10px;
+    
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column; /* Ensures form items stack vertically */
+    text-align: center;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1764b7db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center; /* To center the button */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.div {
+
+    align-content: center;
+}

@@ -21,7 +21,8 @@ export class BookMeetingComponent implements OnInit {
   ngOnInit() {
     this.meetingForm = this.fb.group({
       date: '',
-      time: '',
+      start_time: '',
+      end_time: '',
       time_zone: '',
       location: '',
       meeting_type: MeetingType.Internal, /* Use the enum here */
@@ -47,3 +48,4 @@ export class BookMeetingComponent implements OnInit {
     );
   }
 }
+  

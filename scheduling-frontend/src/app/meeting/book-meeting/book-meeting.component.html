@@ -1,28 +1,47 @@
 <!-- meeting/book/book-meeting.component.html -->
 
-<form [formGroup]="meetingForm" (ngSubmit)="bookMeeting()">
-
-  <!-- Existing Fields -->
-  <input type="date" formControlName="date" required>
-  <input type="time" formControlName="time" required>
-  <input type="text" formControlName="time_zone" required>
-  <input type="text" formControlName="location" required>
+<div>
+  <p>Book Your Meeting Here:</p>
   
-  <select formControlName="meeting_type">
-    <option value="I">Internal</option>
-    <option value="E">External</option>
-  </select>
-
-  <!-- New Fields -->
-  <input type="text" formControlName="subject" placeholder="Subject">
   
-  <input type="text" formControlName="attendees" placeholder="Attendees (comma separated)">
+  <form [formGroup]="meetingForm" (ngSubmit)="bookMeeting()">
+    
+    <label for="dateField">Meeting Date:</label>
+    <input type="date" id="dateField" formControlName="date" required>
   
-  <input type="text" formControlName="host" placeholder="Host">
+    <label for="startTimeField">Meeting Start Time:</label>
+    <input type="time" id="startTimeField" formControlName="start_time" required>
+    
+    <label for="endTimeField">Meeting End Time:</label>
+    <input type="time" id="endTimeField" formControlName="end_time" required>
   
-  <input type="text" formControlName="co_host" placeholder="Co-Host">
+    <label for="timeZoneField">Time Zone:</label>
+    <input type="text" id="timeZoneField" formControlName="time_zone" required>
   
-  <textarea formControlName="notes" placeholder="Notes"></textarea>
-
-  <button type="submit">Book Meeting</button>
-</form>
+    <label for="locationField">Location:</label>
+    <input type="text" id="locationField" formControlName="location" required>
+  
+    <label for="meetingTypeField">Meeting Type:</label>
+    <select id="meetingTypeField" formControlName="meeting_type">
+      <option value="I">Internal</option>
+      <option value="E">External</option>
+    </select>
+  
+    <label for="subjectField">Subject:</label>
+    <input type="text" id="subjectField" formControlName="subject">
+  
+    <label for="attendeesField">Attendees (comma separated):</label>
+    <textarea id="attendeesField" formControlName="attendees"></textarea>
+  
+    <label for="hostField">Host:</label>
+    <input type="text" id="hostField" formControlName="host">
+  
+    <label for="coHostField">Co-Host:</label>
+    <input type="text" id="coHostField" formControlName="co_host">
+  
+    <label for="notesField">Notes:</label>
+    <textarea id="notesField" formControlName="notes"></textarea>
+  
+    <button type="submit">Book Meeting</button>
+  </form>
+  </div>

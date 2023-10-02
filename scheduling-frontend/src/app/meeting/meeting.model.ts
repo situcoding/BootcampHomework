@@ -6,6 +6,7 @@
   }
   
   export interface Meeting {
+    success: Meeting;
     id: number;
     date: string | Date;
     start_time: string;
